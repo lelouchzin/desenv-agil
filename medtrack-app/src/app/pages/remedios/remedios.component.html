@@ -1,0 +1,18 @@
+<div class="page">
+  <header class="page-header">
+    <div>
+      <h1>Meus Remédios</h1>
+      <p class="sub">{{ (remedios | filterAtivos) }} ativos de {{ remedios.length }}</p>
+    </div>
+    <a routerLink="/remedios/novo" class="btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      Novo Remédio
+    </a>
+  </header>
+
+  <div class="tabs">
+    <button class="tab" [class.active]="filtro === 'todos'" (click)="filtro = 'todos'">Todos</button>
+    <button class="tab" [class.active]="filtro === 'ativos'" (click)="filtro = 'ativos'">Ativos</button>
+    <button class="tab" [class.active]="filtro === 'inativos'" (click)="filtro = 'inativos'">Inativos</button>
+  </div>
+</div>
