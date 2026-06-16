@@ -67,8 +67,34 @@ export class RemedioService {
     return this.remedios$.value.find(r => r.id === id);
   }
 
+  salvarRemedio(remedio: Omit<Remedio, 'id'>): Observable<Remedio> {
+    const novo: Remedio = { ...remedio, id: Date.now().toString() };
+    this.remedios$.next([...this.remedios$.value, novo]);
+    return of(novo).pipe(delay(300));
+  }
+
+  atualizarRemedio(id: string, dados: Partial<Remedio>): Observable<Remedio> {
+    const lista = this.remedios$.value.map(r => r.id === id ? { ...r, ...dados } : r);
+    this.remedios$.next(lista);
+    const atualizado = lista.find(r => r.id === id)!;
+    return of(atualizado).pipe(delay(300));
+  }
+
+  excluirRemedio(id: string): Observable<void> {
+    this.remedios$.next(this.remedios$.value.filter(r => r.id !== id));
+    return of(undefined).pipe(delay(300));
+  }
+
   getNotificacoesHoje(): Observable<NotificacaoHoje[]> {
     return this.notificacoes$.asObservable();
+  }
+
+  marcarDose(id: string, status: 'tomado' | 'pulado'): Observable<void> {
+    const lista = this.notificacoes$.value.map(n =>
+      n.id === id ? { ...n, status } : n
+    );
+    this.notificacoes$.next(lista);
+    return of(undefined).pipe(delay(200));
   }
 
   getHistorico(): Observable<DoseHistorico[]> {
