@@ -56,3 +56,81 @@
     color: #4f9cf9;
   }
 }
+
+.remedio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.remedio-card {
+  display: flex;
+  background: #0f1117;
+  border: 1px solid #1e2130;
+  border-radius: 14px;
+  overflow: hidden;
+
+  &.inativo { opacity: 0.55; }
+}
+
+.card-stripe {
+  width: 5px;
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  padding: 18px;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-title { display: flex; flex-direction: column; }
+
+.remedio-nome { font-size: 16px; font-weight: 700; color: #f1f5f9; }
+.remedio-dose { font-size: 13px; color: #64748b; margin-top: 2px; }
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(100, 116, 139, 0.15);
+  color: #64748b;
+
+  &.on { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+}
+
+.freq {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+.horarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.horario-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: #0a0d14;
+  border: 1px solid #1e2130;
+  color: #cbd5e1;
+}
+
+.obs {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+}

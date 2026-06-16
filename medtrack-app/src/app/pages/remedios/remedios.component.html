@@ -15,4 +15,24 @@
     <button class="tab" [class.active]="filtro === 'ativos'" (click)="filtro = 'ativos'">Ativos</button>
     <button class="tab" [class.active]="filtro === 'inativos'" (click)="filtro = 'inativos'">Inativos</button>
   </div>
+
+  <div class="remedio-grid">
+    <div class="remedio-card" *ngFor="let r of remediosFiltrados" [class.inativo]="!r.ativo">
+      <div class="card-stripe" [style.background]="r.cor"></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="card-title">
+            <span class="remedio-nome">{{ r.nome }}</span>
+            <span class="remedio-dose">{{ r.dosagem }}{{ r.unidade }}</span>
+          </div>
+          <span class="badge" [class.on]="r.ativo">{{ r.ativo ? 'Ativo' : 'Inativo' }}</span>
+        </div>
+        <div class="freq">{{ frequenciaLabel(r) }}</div>
+        <div class="horarios">
+          <span class="horario-chip" *ngFor="let h of r.horarios">{{ h.hora }}</span>
+        </div>
+        <p class="obs" *ngIf="r.observacoes">{{ r.observacoes }}</p>
+      </div>
+    </div>
+  </div>
 </div>
