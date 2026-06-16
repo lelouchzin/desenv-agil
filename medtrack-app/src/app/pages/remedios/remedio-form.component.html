@@ -1,0 +1,51 @@
+<div class="page">
+  <header class="page-header">
+    <div>
+      <a routerLink="/remedios" class="back-link">← Voltar</a>
+      <h1>Novo Remédio</h1>
+    </div>
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()" class="form-card">
+    <div class="field">
+      <label>Nome do remédio</label>
+      <input type="text" formControlName="nome" placeholder="Ex: Losartana">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Dosagem</label>
+        <input type="text" formControlName="dosagem" placeholder="Ex: 50">
+      </div>
+      <div class="field">
+        <label>Unidade</label>
+        <select formControlName="unidade">
+          <option value="mg">mg</option>
+          <option value="ml">ml</option>
+          <option value="UI">UI</option>
+          <option value="gotas">gotas</option>
+          <option value="comprimido">comprimido</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" formArrayName="horarios">
+      <label>Horários</label>
+      <div class="horario-row" *ngFor="let h of horarios.controls; let i = index" [formGroupName]="i">
+        <input type="time" formControlName="hora">
+        <button type="button" class="icon-btn" (click)="removeHorario(i)" [disabled]="horarios.length === 1">✕</button>
+      </div>
+      <button type="button" class="add-btn" (click)="addHorario()">+ Adicionar horário</button>
+    </div>
+
+    <div class="field">
+      <label>Observações</label>
+      <textarea formControlName="observacoes" rows="2" placeholder="Opcional"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <a routerLink="/remedios" class="btn-cancel">Cancelar</a>
+      <button type="submit" class="btn-primary" [disabled]="salvando">Salvar</button>
+    </div>
+  </form>
+</div>
