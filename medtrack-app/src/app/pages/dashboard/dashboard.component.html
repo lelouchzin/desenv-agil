@@ -77,6 +77,30 @@
         <span class="dot yellow" style="margin-left:16px"></span> {{ pendentesHoje }} pendentes
       </div>
     </div>
+
+    <div class="card next-card" *ngIf="proximoRemedio; else semPendente">
+      <h2>Próximo Remédio</h2>
+      <div class="next-content">
+        <div class="next-dot" [style.background]="proximoRemedio.remedioCor"></div>
+        <div class="next-info">
+          <span class="next-nome">{{ proximoRemedio.remedioNome }}</span>
+          <span class="next-dose">{{ proximoRemedio.dosagem }} · {{ proximoRemedio.unidade }}</span>
+        </div>
+        <div class="next-hora" [class.late]="proximoRemedio.atrasado">
+          {{ proximoRemedio.horario }}
+          <span *ngIf="proximoRemedio.atrasado" class="late-badge">Atrasado</span>
+        </div>
+      </div>
+      <a routerLink="/notificacoes" class="btn-outline">Ver todos os horários →</a>
+    </div>
+
+    <ng-template #semPendente>
+      <div class="card next-card all-done">
+        <div class="done-icon">🎉</div>
+        <h3>Tudo em dia!</h3>
+        <p>Você tomou todos os remédios de hoje.</p>
+      </div>
+    </ng-template>
   </div>
 
   <div class="card">
