@@ -48,4 +48,51 @@
       </div>
     </div>
   </div>
+
+  <div class="content-grid">
+    <div class="card progress-card">
+      <h2>Progresso do Dia</h2>
+      <div class="progress-circle-wrap">
+        <svg class="progress-circle" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#1e2130" stroke-width="10"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="url(#grad)" stroke-width="10"
+            stroke-linecap="round"
+            [attr.stroke-dasharray]="314"
+            [attr.stroke-dashoffset]="314 - (314 * progressoHoje / 100)"
+            transform="rotate(-90 60 60)"/>
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#4f9cf9"/>
+              <stop offset="100%" style="stop-color:#a78bfa"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="progress-text">
+          <span class="progress-pct">{{ progressoHoje }}%</span>
+          <span class="progress-sub">concluído</span>
+        </div>
+      </div>
+      <div class="progress-detail">
+        <span class="dot green"></span> {{ tomadosHoje }} tomados
+        <span class="dot yellow" style="margin-left:16px"></span> {{ pendentesHoje }} pendentes
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>Remédios de Hoje</h2>
+      <a routerLink="/notificacoes" class="link-more">Ver mais →</a>
+    </div>
+    <div class="dose-list">
+      <div class="dose-item" *ngFor="let n of notificacoesRecentes" [class]="statusClass(n)">
+        <div class="dose-dot" [style.background]="n.remedioCor"></div>
+        <div class="dose-info">
+          <span class="dose-nome">{{ n.remedioNome }}</span>
+          <span class="dose-det">{{ n.dosagem }} · {{ n.horario }}</span>
+        </div>
+        <span class="dose-badge" [class]="statusClass(n)">{{ statusLabel(n) }}</span>
+      </div>
+    </div>
+  </div>
 </div>
