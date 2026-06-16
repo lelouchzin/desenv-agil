@@ -32,6 +32,22 @@
           <span class="horario-chip" *ngFor="let h of r.horarios">{{ h.hora }}</span>
         </div>
         <p class="obs" *ngIf="r.observacoes">{{ r.observacoes }}</p>
+        <div class="card-actions">
+          <a [routerLink]="['/remedios', r.id, 'editar']" class="action-btn">Editar</a>
+          <button class="action-btn" (click)="toggleAtivo(r)">{{ r.ativo ? 'Desativar' : 'Ativar' }}</button>
+          <button class="action-btn danger" (click)="confirmandoExcluir = r.id">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" *ngIf="confirmandoExcluir" (click)="confirmandoExcluir = null">
+    <div class="confirm-box" (click)="$event.stopPropagation()">
+      <h3>Excluir remédio?</h3>
+      <p>Esta ação não pode ser desfeita.</p>
+      <div class="confirm-actions">
+        <button class="btn-cancel" (click)="confirmandoExcluir = null">Cancelar</button>
+        <button class="btn-danger" (click)="excluir(confirmandoExcluir)">Excluir</button>
       </div>
     </div>
   </div>
