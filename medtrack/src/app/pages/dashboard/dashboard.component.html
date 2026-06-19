@@ -57,6 +57,24 @@
     </div>
   </section>
 
+  <!-- Gráfico semanal -->
+  <section class="grafico-card">
+    <h2>Adesão semanal</h2>
+    <div class="grafico-barras">
+      <div class="barra-item" *ngFor="let item of adesaoPorDia">
+        <div class="barra-wrap">
+          <div
+            class="barra-fill"
+            [style.height.%]="item.percent"
+            [class.zero]="item.percent === 0"
+          ></div>
+        </div>
+        <span class="barra-label">{{ item.dia }}</span>
+        <span class="barra-percent">{{ item.percent }}%</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Doses de hoje -->
   <section class="doses-section">
     <h2>Doses de hoje</h2>
