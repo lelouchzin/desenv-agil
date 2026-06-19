@@ -49,6 +49,8 @@
   &.success .stat-value { color: #34d399; }
   &.warning .stat-value { color: #fbbf24; }
   &.danger .stat-value { color: #f87171; }
+  &.info .stat-value { color: #4f9cf9; }
+  &.purple .stat-value { color: #a78bfa; }
 }
 
 .progress-card {
@@ -152,3 +154,7 @@
 
 .badge-success { background: rgba(52, 211, 153, 0.15); color: #34d399; }
 .badge-muted { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+
+.stats-extra {
+  margin-top: -8px;
+}
