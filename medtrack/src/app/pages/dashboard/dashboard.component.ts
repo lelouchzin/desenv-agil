@@ -25,6 +25,18 @@ export class DashboardComponent implements OnInit {
   taxaAdesao = 0;
   proximaDose: string | null = null;
 
+  semanaLabels = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+  adesaoPorDia: { dia: string; percent: number }[] = [
+    { dia: 'Dom', percent: 100 },
+    { dia: 'Seg', percent: 75 },
+    { dia: 'Ter', percent: 100 },
+    { dia: 'Qua', percent: 50 },
+    { dia: 'Qui', percent: 100 },
+    { dia: 'Sex', percent: 66 },
+    { dia: 'Sáb', percent: 0 },
+  ];
+
   constructor(private remedioService: RemedioService) {}
 
   ngOnInit(): void {
