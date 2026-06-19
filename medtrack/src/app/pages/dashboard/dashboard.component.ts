@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RemedioService } from '../../services/remedio.service';
-import { NotificacaoHoje, Remedio } from '../../models/remedio.model';
+import { NotificacaoHoje, Remedio, DoseHistorico } from '../../models/remedio.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,6 +20,11 @@ export class DashboardComponent implements OnInit {
   pendentesHoje = 0;
   atrasadosHoje = 0;
 
+  totalRemedios = 0;
+  remediosAtivos = 0;
+  taxaAdesao = 0;
+  proximaDose: string | null = null;
+
   constructor(private remedioService: RemedioService) {}
 
   ngOnInit(): void {
@@ -31,6 +36,24 @@ export class DashboardComponent implements OnInit {
       this.tomadosHoje = lista.filter(n => n.status === 'tomado').length;
       this.pendentesHoje = lista.filter(n => n.status === 'pendente').length;
       this.atrasadosHoje = lista.filter(n => n.atrasado && n.status === 'pendente').length;
+
+      const proxima = lista
+        .filter(n => n.status === 'pendente' && !n.atrasado)
+        .sort((a, b) => a.horario.localeCompare(b.horario))[0];
+      this.proximaDose = proxima ? proxima.horario : null;
+    });
+
+    this.remedios$.subscribe(lista => {
+      this.totalRemedios = lista.length;
+      this.remediosAtivos = lista.filter(r => r.ativo).length;
+    });
+
+    this.remedioService.getHistorico().subscribe((historico: DoseHistorico[]) => {
+      const finalizadas = historico.filter(d => d.status !== 'pendente');
+      const tomadas = historico.filter(d => d.status === 'tomado');
+      this.taxaAdesao = finalizadas.length > 0
+        ? Math.round((tomadas.length / finalizadas.length) * 100)
+        : 0;
     });
   }
 
