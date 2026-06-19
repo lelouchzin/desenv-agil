@@ -1,0 +1,37 @@
+<div class="remedios">
+  <header class="page-header">
+    <div>
+      <h1>Meus Remédios</h1>
+      <p class="subtitle">Gerencie seus medicamentos cadastrados</p>
+    </div>
+  </header>
+
+  <div class="remedios-list" *ngIf="remedios$ | async as remedios">
+    <div
+      class="remedio-card"
+      *ngFor="let remedio of remedios"
+      [class.inativo]="!remedio.ativo"
+    >
+      <div class="remedio-color" [style.background]="remedio.cor"></div>
+
+      <div class="remedio-info">
+        <div class="remedio-header">
+          <span class="remedio-nome">{{ remedio.nome }}</span>
+          <span class="badge-freq">{{ frequenciaLabel(remedio) }}</span>
+        </div>
+        <span class="remedio-dosagem">{{ remedio.dosagem }} {{ remedio.unidade }}</span>
+        <div class="remedio-horarios">
+          <span class="horario-tag" *ngFor="let h of remedio.horarios">{{ h.hora }}</span>
+        </div>
+        <p class="remedio-obs" *ngIf="remedio.observacoes">{{ remedio.observacoes }}</p>
+      </div>
+
+      <div class="remedio-actions">
+        <button class="btn-toggle" (click)="toggleAtivo(remedio)">
+          {{ remedio.ativo ? 'Desativar' : 'Ativar' }}
+        </button>
+        <button class="btn-excluir" (click)="excluir(remedio.id)">Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
