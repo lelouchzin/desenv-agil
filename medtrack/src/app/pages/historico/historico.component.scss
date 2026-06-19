@@ -125,3 +125,47 @@
   background: rgba(148, 163, 184, 0.15);
   color: #94a3b8;
 }
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  input[type="date"] {
+    background: #0f1117;
+    border: 1px solid #1e2130;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #f1f5f9;
+    font-family: inherit;
+    outline: none;
+
+    &:focus { border-color: #4f9cf9; }
+  }
+
+  button {
+    background: #1e2130;
+    color: #64748b;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+
+    &:hover { background: #2a3350; color: #cbd5e1; }
+
+    &.ativo {
+      background: #1a2640;
+      color: #4f9cf9;
+    }
+  }
+}
+
+.btn-limpar {
+  background: rgba(248, 113, 113, 0.15) !important;
+  color: #f87171 !important;
+}

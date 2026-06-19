@@ -6,10 +6,19 @@
     </div>
   </header>
 
+  <!-- Filtros -->
+  <div class="filtros">
+    <input type="date" [(ngModel)]="filtroData" />
+    <button [class.ativo]="filtroStatus === 'todos'" (click)="filtroStatus = 'todos'">Todos</button>
+    <button [class.ativo]="filtroStatus === 'tomado'" (click)="filtroStatus = 'tomado'">Tomados</button>
+    <button [class.ativo]="filtroStatus === 'pulado'" (click)="filtroStatus = 'pulado'">Pulados</button>
+    <button class="btn-limpar" *ngIf="filtroData" (click)="filtroData = ''">Limpar data</button>
+  </div>
+
   <div class="historico-list" *ngIf="historico$ | async as historico">
     <div
       class="historico-card"
-      *ngFor="let dose of historico"
+      *ngFor="let dose of filtrar(historico)"
       [class.tomado]="dose.status === 'tomado'"
       [class.pulado]="dose.status === 'pulado'"
     >
