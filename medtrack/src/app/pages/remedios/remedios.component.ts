@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 export class RemediosComponent implements OnInit {
   remedios$!: Observable<Remedio[]>;
   mostrarForm = false;
+  filtro: 'todos' | 'ativos' | 'inativos' = 'todos';
 
   novoRemedio = this.remedioEmBranco();
 
@@ -22,6 +23,12 @@ export class RemediosComponent implements OnInit {
 
   ngOnInit(): void {
     this.remedios$ = this.remedioService.getRemedios();
+  }
+
+  filtrar(remedios: Remedio[]): Remedio[] {
+    if (this.filtro === 'ativos') return remedios.filter(r => r.ativo);
+    if (this.filtro === 'inativos') return remedios.filter(r => !r.ativo);
+    return remedios;
   }
 
   remedioEmBranco() {
