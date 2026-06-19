@@ -15,7 +15,7 @@
   <nav class="nav">
     <span class="nav-label">MENU</span>
     
-      *ngFor="let item of navItems"
+      <a *ngFor="let item of navItems"
       [routerLink]="item.route"
       routerLinkActive="active"
       class="nav-item"
