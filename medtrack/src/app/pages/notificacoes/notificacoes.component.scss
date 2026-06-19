@@ -1,0 +1,140 @@
+.notificacoes {
+  padding: 32px 40px;
+  max-width: 1100px;
+}
+
+.page-header {
+  margin-bottom: 28px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+}
+
+.doses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dose-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #0f1117;
+  border: 1px solid #1e2130;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: opacity 0.2s;
+
+  &.atrasado {
+    border-color: rgba(248, 113, 113, 0.4);
+  }
+
+  &.tomado {
+    opacity: 0.55;
+  }
+
+  &.pulado {
+    opacity: 0.4;
+  }
+}
+
+.dose-color {
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.dose-horario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+
+  .horario {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .atrasado-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #f87171;
+    margin-top: 3px;
+  }
+}
+
+.dose-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  .dose-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+
+  .dose-dosagem {
+    font-size: 12px;
+    color: #64748b;
+  }
+}
+
+.dose-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-pular, .btn-tomar {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-pular {
+  background: #1e2130;
+  color: #94a3b8;
+
+  &:hover { background: #2a3350; }
+}
+
+.btn-tomar {
+  background: #4f9cf9;
+  color: white;
+
+  &:hover { background: #3b82f6; }
+}
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+.badge-tomado {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.badge-pulado {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}

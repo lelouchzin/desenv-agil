@@ -1,0 +1,48 @@
+<div class="notificacoes">
+  <header class="page-header">
+    <div>
+      <h1>Hoje</h1>
+      <p class="subtitle">Todas as doses programadas para hoje</p>
+    </div>
+  </header>
+
+  <div class="doses-list" *ngIf="notificacoes$ | async as notificacoes">
+    <div
+      class="dose-card"
+      *ngFor="let dose of notificacoes"
+      [class.tomado]="dose.status === 'tomado'"
+      [class.pulado]="dose.status === 'pulado'"
+      [class.atrasado]="dose.atrasado && dose.status === 'pendente'"
+    >
+      <div class="dose-color" [style.background]="dose.remedioCor"></div>
+
+      <div class="dose-horario">
+        <span class="horario">{{ dose.horario }}</span>
+        <span class="atrasado-badge" *ngIf="dose.atrasado && dose.status === 'pendente'">
+          Atrasado
+        </span>
+      </div>
+
+      <div class="dose-info">
+        <span class="dose-nome">{{ dose.remedioNome }}</span>
+        <span class="dose-dosagem">{{ dose.dosagem }} · {{ dose.unidade }}</span>
+      </div>
+
+      <div class="dose-actions">
+        <ng-container *ngIf="dose.status === 'pendente'; else jaMarcado">
+          <button class="btn-pular" (click)="marcarPulado(dose.id)">Pular</button>
+          <button class="btn-tomar" (click)="marcarTomado(dose.id)">Tomar</button>
+        </ng-container>
+        <ng-template #jaMarcado>
+          <span
+            class="status-badge"
+            [class.badge-tomado]="dose.status === 'tomado'"
+            [class.badge-pulado]="dose.status === 'pulado'"
+          >
+            {{ statusLabel(dose.status) }}
+          </span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
