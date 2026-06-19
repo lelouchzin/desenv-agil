@@ -25,7 +25,7 @@
         <input type="text" [(ngModel)]="novoRemedio.dosagem" placeholder="Ex: 50" [class.input-erro]="erros.dosagem" />
         <span class="msg-erro" *ngIf="erros.dosagem">{{ erros.dosagem }}</span>
       </div>
-      
+
       <div class="form-group">
         <label>Unidade</label>
         <select [(ngModel)]="novoRemedio.unidade">
@@ -81,11 +81,18 @@
     </div>
   </div>
 
+  <!-- Filtros -->
+  <div class="filtros" *ngIf="!mostrarForm">
+    <button [class.ativo]="filtro === 'todos'" (click)="filtro = 'todos'">Todos</button>
+    <button [class.ativo]="filtro === 'ativos'" (click)="filtro = 'ativos'">Ativos</button>
+    <button [class.ativo]="filtro === 'inativos'" (click)="filtro = 'inativos'">Inativos</button>
+  </div>
+
   <!-- Lista -->
   <div class="remedios-list" *ngIf="remedios$ | async as remedios">
     <div
       class="remedio-card"
-      *ngFor="let remedio of remedios"
+      *ngFor="let remedio of filtrar(remedios)"
       [class.inativo]="!remedio.ativo"
     >
       <div class="remedio-color" [style.background]="remedio.cor"></div>
