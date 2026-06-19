@@ -1,0 +1,65 @@
+<div class="dashboard">
+  <header class="page-header">
+    <div>
+      <h1>Dashboard</h1>
+      <p class="subtitle">Acompanhe sua rotina de medicamentos hoje</p>
+    </div>
+  </header>
+
+  <section class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-label">Total Hoje</span>
+      <span class="stat-value">{{ totalHoje }}</span>
+    </div>
+    <div class="stat-card success">
+      <span class="stat-label">Tomados</span>
+      <span class="stat-value">{{ tomadosHoje }}</span>
+    </div>
+    <div class="stat-card warning">
+      <span class="stat-label">Pendentes</span>
+      <span class="stat-value">{{ pendentesHoje }}</span>
+    </div>
+    <div class="stat-card danger">
+      <span class="stat-label">Atrasados</span>
+      <span class="stat-value">{{ atrasadosHoje }}</span>
+    </div>
+  </section>
+  <section class="progress-card">
+    <div class="progress-header">
+      <span>Progresso do dia</span>
+      <span class="progress-percent">{{ progresso }}%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="progresso"></div>
+    </div>
+  </section>
+
+  <section class="doses-section">
+    <h2>Doses de hoje</h2>
+    <div class="doses-list" *ngIf="notificacoes$ | async as notificacoes">
+      <div
+        class="dose-item"
+        *ngFor="let dose of notificacoes"
+        [class.atrasado]="dose.atrasado && dose.status === 'pendente'"
+        [class.tomado]="dose.status === 'tomado'"
+      >
+        <div class="dose-color" [style.background]="dose.remedioCor"></div>
+        <div class="dose-info">
+          <span class="dose-nome">{{ dose.remedioNome }}</span>
+          <span class="dose-dosagem">{{ dose.dosagem }} · {{ dose.horario }}</span>
+        </div>
+        <div class="dose-status">
+          <ng-container *ngIf="dose.status === 'pendente'; else jaMarcado">
+            <button class="btn-action btn-skip" (click)="marcarPulado(dose.id)">Pular</button>
+            <button class="btn-action btn-take" (click)="marcarTomado(dose.id)">Tomar</button>
+          </ng-container>
+          <ng-template #jaMarcado>
+            <span class="badge" [class.badge-success]="dose.status === 'tomado'" [class.badge-muted]="dose.status === 'pulado'">
+              {{ dose.status === 'tomado' ? 'Tomado' : 'Pulado' }}
+            </span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

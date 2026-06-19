@@ -1,0 +1,154 @@
+.dashboard {
+  padding: 32px 40px;
+  max-width: 1100px;
+}
+
+.page-header {
+  margin-bottom: 28px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #0f1117;
+  border: 1px solid #1e2130;
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  .stat-label {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  &.success .stat-value { color: #34d399; }
+  &.warning .stat-value { color: #fbbf24; }
+  &.danger .stat-value { color: #f87171; }
+}
+
+.progress-card {
+  background: #0f1117;
+  border: 1px solid #1e2130;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 28px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+
+  .progress-percent { font-weight: 700; color: #4f9cf9; }
+}
+
+.progress-bar {
+  height: 8px;
+  background: #1e2130;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4f9cf9, #34d399);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.doses-section {
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-bottom: 14px;
+  }
+}
+.doses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dose-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0f1117;
+  border: 1px solid #1e2130;
+  border-radius: 10px;
+  padding: 14px 16px;
+
+  &.atrasado { border-color: rgba(248, 113, 113, 0.4); }
+  &.tomado { opacity: 0.6; }
+}
+
+.dose-color {
+  width: 8px;
+  height: 36px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.dose-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .dose-nome { font-size: 14px; font-weight: 600; color: #f1f5f9; }
+  .dose-dosagem { font-size: 12px; color: #64748b; margin-top: 2px; }
+}
+
+.dose-status {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-action {
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-skip { background: #1e2130; color: #94a3b8; }
+.btn-take { background: #4f9cf9; color: white; }
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.badge-success { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+.badge-muted { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
