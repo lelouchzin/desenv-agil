@@ -1,0 +1,44 @@
+<div class="historico">
+  <header class="page-header">
+    <div>
+      <h1>Histórico</h1>
+      <p class="subtitle">Registro completo de todas as doses</p>
+    </div>
+  </header>
+
+  <div class="historico-list" *ngIf="historico$ | async as historico">
+    <div
+      class="historico-card"
+      *ngFor="let dose of historico"
+      [class.tomado]="dose.status === 'tomado'"
+      [class.pulado]="dose.status === 'pulado'"
+    >
+      <div class="dose-color" [style.background]="dose.remedioCor"></div>
+
+      <div class="dose-data">
+        <span class="data">{{ formatarData(dose.horarioPrevisto) }}</span>
+        <span class="hora">{{ formatarHora(dose.horarioPrevisto) }}</span>
+      </div>
+
+      <div class="dose-info">
+        <span class="dose-nome">{{ dose.remedioNome }}</span>
+        <span class="dose-dosagem">{{ dose.dosagem }}</span>
+      </div>
+
+      <div class="dose-real" *ngIf="dose.horarioReal">
+        <span class="real-label">Tomado às</span>
+        <span class="real-hora">{{ formatarHora(dose.horarioReal) }}</span>
+      </div>
+
+      <div class="dose-status">
+        <span
+          class="status-badge"
+          [class.badge-tomado]="dose.status === 'tomado'"
+          [class.badge-pulado]="dose.status === 'pulado'"
+        >
+          {{ statusLabel(dose.status) }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

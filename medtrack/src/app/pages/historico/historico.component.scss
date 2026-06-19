@@ -1,0 +1,127 @@
+.historico {
+  padding: 32px 40px;
+  max-width: 1100px;
+}
+
+.page-header {
+  margin-bottom: 28px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+}
+
+.historico-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.historico-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #0f1117;
+  border: 1px solid #1e2130;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: opacity 0.2s;
+
+  &.pulado {
+    opacity: 0.45;
+  }
+}
+
+.dose-color {
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.dose-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 110px;
+
+  .data {
+    font-size: 12px;
+    color: #64748b;
+  }
+
+  .hora {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-top: 2px;
+  }
+}
+
+.dose-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  .dose-nome {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f1f5f9;
+  }
+
+  .dose-dosagem {
+    font-size: 12px;
+    color: #64748b;
+  }
+}
+
+.dose-real {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 90px;
+
+  .real-label {
+    font-size: 11px;
+    color: #4a5568;
+  }
+
+  .real-hora {
+    font-size: 13px;
+    font-weight: 600;
+    color: #34d399;
+    margin-top: 2px;
+  }
+}
+
+.dose-status {
+  min-width: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.status-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 6px;
+}
+
+.badge-tomado {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.badge-pulado {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
