@@ -69,6 +69,16 @@
     color: #64748b;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    
+    .input-erro {
+    border-color: #f87171 !important;
+  }
+
+  .msg-erro {
+    font-size: 11px;
+    color: #f87171;
+    margin-top: 2px;
+  }
   }
 
   input, select {

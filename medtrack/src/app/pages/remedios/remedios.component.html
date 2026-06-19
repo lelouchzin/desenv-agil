@@ -16,14 +16,16 @@
     <div class="form-grid">
       <div class="form-group">
         <label>Nome</label>
-        <input type="text" [(ngModel)]="novoRemedio.nome" placeholder="Ex: Losartana" />
+        <input type="text" [(ngModel)]="novoRemedio.nome" placeholder="Ex: Losartana" [class.input-erro]="erros.nome" />
+        <span class="msg-erro" *ngIf="erros.nome">{{ erros.nome }}</span>
       </div>
 
       <div class="form-group">
         <label>Dosagem</label>
-        <input type="text" [(ngModel)]="novoRemedio.dosagem" placeholder="Ex: 50" />
+        <input type="text" [(ngModel)]="novoRemedio.dosagem" placeholder="Ex: 50" [class.input-erro]="erros.dosagem" />
+        <span class="msg-erro" *ngIf="erros.dosagem">{{ erros.dosagem }}</span>
       </div>
-
+      
       <div class="form-group">
         <label>Unidade</label>
         <select [(ngModel)]="novoRemedio.unidade">
