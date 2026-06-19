@@ -37,9 +37,14 @@ export class RemediosComponent implements OnInit {
       observacoes: ''
     };
   }
+  erros: { nome?: string; dosagem?: string } = {};
 
   salvar(): void {
-    if (!this.novoRemedio.nome || !this.novoRemedio.dosagem) return;
+    this.erros = {};
+    if (!this.novoRemedio.nome.trim()) this.erros.nome = 'Nome é obrigatório';
+    if (!this.novoRemedio.dosagem.trim()) this.erros.dosagem = 'Dosagem é obrigatória';
+    if (Object.keys(this.erros).length > 0) return;
+
     this.remedioService.salvarRemedio(this.novoRemedio).subscribe(() => {
       this.mostrarForm = false;
       this.novoRemedio = this.remedioEmBranco();
