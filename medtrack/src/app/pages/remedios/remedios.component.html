@@ -4,8 +4,82 @@
       <h1>Meus Remédios</h1>
       <p class="subtitle">Gerencie seus medicamentos cadastrados</p>
     </div>
+    <button class="btn-novo" (click)="mostrarForm = true" *ngIf="!mostrarForm">
+      + Novo Remédio
+    </button>
   </header>
 
+  <!-- Formulário -->
+  <div class="form-card" *ngIf="mostrarForm">
+    <h2>Cadastrar Remédio</h2>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" [(ngModel)]="novoRemedio.nome" placeholder="Ex: Losartana" />
+      </div>
+
+      <div class="form-group">
+        <label>Dosagem</label>
+        <input type="text" [(ngModel)]="novoRemedio.dosagem" placeholder="Ex: 50" />
+      </div>
+
+      <div class="form-group">
+        <label>Unidade</label>
+        <select [(ngModel)]="novoRemedio.unidade">
+          <option value="mg">mg</option>
+          <option value="ml">ml</option>
+          <option value="UI">UI</option>
+          <option value="gotas">gotas</option>
+          <option value="comprimido">comprimido</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Frequência</label>
+        <select [(ngModel)]="novoRemedio.frequencia">
+          <option value="diario">Diário</option>
+          <option value="semanal">Semanal</option>
+          <option value="intervalo">Por intervalo</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Horário</label>
+        <input type="time" [(ngModel)]="novoRemedio.horarios[0].hora" />
+      </div>
+
+      <div class="form-group">
+        <label>Data de início</label>
+        <input type="date" [(ngModel)]="novoRemedio.dataInicio" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Observações</label>
+      <input type="text" [(ngModel)]="novoRemedio.observacoes" placeholder="Ex: Tomar com água" />
+    </div>
+
+    <div class="form-group">
+      <label>Cor</label>
+      <div class="cores-picker">
+        <div
+          class="cor-option"
+          *ngFor="let cor of cores"
+          [style.background]="cor"
+          [class.selecionada]="novoRemedio.cor === cor"
+          (click)="novoRemedio.cor = cor"
+        ></div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+      <button class="btn-salvar" (click)="salvar()">Salvar</button>
+    </div>
+  </div>
+
+  <!-- Lista -->
   <div class="remedios-list" *ngIf="remedios$ | async as remedios">
     <div
       class="remedio-card"
