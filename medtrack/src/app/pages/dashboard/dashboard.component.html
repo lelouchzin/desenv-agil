@@ -6,6 +6,7 @@
     </div>
   </header>
 
+  <!-- Stats principais -->
   <section class="stats-grid">
     <div class="stat-card">
       <span class="stat-label">Total Hoje</span>
@@ -24,6 +25,28 @@
       <span class="stat-value">{{ atrasadosHoje }}</span>
     </div>
   </section>
+
+  <!-- Stats extras -->
+  <section class="stats-grid stats-extra">
+    <div class="stat-card">
+      <span class="stat-label">Remédios Cadastrados</span>
+      <span class="stat-value">{{ totalRemedios }}</span>
+    </div>
+    <div class="stat-card success">
+      <span class="stat-label">Remédios Ativos</span>
+      <span class="stat-value">{{ remediosAtivos }}</span>
+    </div>
+    <div class="stat-card info">
+      <span class="stat-label">Taxa de Adesão</span>
+      <span class="stat-value">{{ taxaAdesao }}%</span>
+    </div>
+    <div class="stat-card purple">
+      <span class="stat-label">Próxima Dose</span>
+      <span class="stat-value">{{ proximaDose ?? '—' }}</span>
+    </div>
+  </section>
+
+  <!-- Progresso -->
   <section class="progress-card">
     <div class="progress-header">
       <span>Progresso do dia</span>
@@ -34,6 +57,7 @@
     </div>
   </section>
 
+  <!-- Doses de hoje -->
   <section class="doses-section">
     <h2>Doses de hoje</h2>
     <div class="doses-list" *ngIf="notificacoes$ | async as notificacoes">
